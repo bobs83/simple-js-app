@@ -1,32 +1,34 @@
-var pokemonList=[
+let pokemonList = [];
+
+pokemonList=[
     
     {
-        name: 'flareon',
-        types: ['fire']
-        species: 'lizard',
-        height: 0.6,
-        weight: 8.5,
+        name: 'Kadabra',
+        type: ['Psychic'],
+        species: 'Telekinesis',
+        height: 1.3,
+        weight: 56.5,
  
     },
     {
-        name: 'flareon',
-        types: ['fire']
-        species: 'flame',
+        name: 'Flareon',
+        type: ['Fire'],
+        species: 'Flame',
         height: 0.9,
-        weight: 25 ,
+        weight: 25,
 
     },
     {
-        name: 'pikachu',
-        types: ['electric']
-        species: 'mouse',
+        name: 'Pikachu',
+        type: ['Electric'],
+        species: 'Mouse',
         height: 0.4,
         weight: 6,
 
     },
     {
-        name: 'psyduck',
-        types: ['Water']
+        name: 'Psyduck',
+        type: ['Water'],
         species: 'Duck',
         height: 0.8,
         weight: 19.6,
@@ -34,11 +36,13 @@ var pokemonList=[
     },
     {
         name: 'mewtwo',
-        types: ['psychic']
+        types: ['psychic'],
         species: 'genetic',
         height: 2,
         weight: 122,
 
     }
 ];
+
+
 console.log(pokemonList);
