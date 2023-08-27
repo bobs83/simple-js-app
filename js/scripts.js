@@ -13,10 +13,8 @@ document.write(interestTag, interest);
 
 //more difficult calculation 
 
-let BobbyFoodtag = 'Bobby favorite food is: ';
 let favoriteFood = 'pasta';
-let minTomatotag = 'The least amount of tomatoes in his pasta mix are:'
-let tomatoes = 100;
-let dubbleTomatoes = tomatoes * 2;
-let minTomatoes = (dubbleTomatoes * 5) - (tomatoes / 2);
-document.write(BobbyFoodtag, favoriteFood, minTomatotag, minTomatoes)
+let tomaToes = 100;
+let dubbleTomatoes = tomaToes * 2;
+let minTomatoes = (dubbleTomatoes * 5) - (tomaToes / 2);
+document.write('Bobby favorite food is:'+ favoriteFood, 'The amount of tomatoes in his pasta mix are:'+ minTomatoes);
