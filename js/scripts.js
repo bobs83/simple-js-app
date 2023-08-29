@@ -38,6 +38,9 @@ pokemonList=[
         name: 'Mewtwo',
         type: ['Psychic'],
         species: 'Genetic',
+        name: 'Mewtwo',
+        type: ['Psychic'],
+        species: 'Genetic',
         height: 2,
         weight: 122,
 
