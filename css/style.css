@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400&display=swap');
+
+
+body { 
+    margin: 0;
+    background-color: rgb(251, 251, 251);
+    font-family: 'Poppins', sans-serif;
+}
+
+header{
+    background:#fff;
+    border-radius: 5px;
+    border: 10px solid #fff;
+    box-shadow: 10px -2px 12px #000000;
+}
+
+nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    text-align: center;
+}
+
+img.pokemon-logo{
+    width: 200px;
+    height: auto;
+    margin: 4px;    
+}
+
