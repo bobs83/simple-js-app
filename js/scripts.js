@@ -35,9 +35,9 @@ pokemonList=[
 
     },
     {
-        name: 'mewtwo',
-        types: ['psychic'],
-        species: 'genetic',
+        name: 'Mewtwo',
+        type: ['Psychic'],
+        species: 'Genetic',
         height: 2,
         weight: 122,
 
@@ -45,4 +45,10 @@ pokemonList=[
 ];
 
 
-console.log(pokemonList);
+//console.log(pokemonList);
+
+//WRITE THE LIST //
+
+for (let i = 0; i < pokemonList.length; i++) {
+    document.write(`<h3>Pokemone</h3> ${pokemonList[i].name} <br> Type: ${pokemonList[i].type} <br> height: ${pokemonList[i].height} <br> `)
+}
