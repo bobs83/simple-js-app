@@ -58,7 +58,7 @@ for (let i = 0; i < pokemonList.length; i++) {
 
 for (let i=0; i<pokemonList.length; i++) {
 if (pokemonList[i].height >= 1) {
-    document.write(`<h3> Bigger Pokemon</h3> ${pokemonList[i].name} <br> Type: ${pokemonList[i].type} <br> Height: ${pokemonList[i].height} - Wow, that’s big! <br> `)
+    document.write(`<h3> Bigger Pokemon</h3> ${pokemonList[i].name} <br> Type: ${pokemonList[i].type} <br> Height: ${pokemonList[i].height} - Wow, that/s big! <br> `)
 }
     else {
         document.write(`<h3> Normal Pokemon</h3> ${pokemonList[i].name} <br> Type: ${pokemonList[i].type} <br> Height: ${pokemonList[i].height} <br> `)
