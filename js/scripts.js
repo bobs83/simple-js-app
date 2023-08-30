@@ -50,7 +50,7 @@ pokemonList=[
 
 //console.log(pokemonList);
 
-//WRITE THE LIST //
+//Write the list //
 /*
 for (let i = 0; i < pokemonList.length; i++) {
     document.write(`<h3>Pokemone</h3> ${pokemonList[i].name} <br> Type: ${pokemonList[i].type} <br> height: ${pokemonList[i].height} <br> `)
@@ -61,7 +61,7 @@ for (let i = 0; i < pokemonList.length; i++) {
 
 for (let i=0; i<pokemonList.length; i++) {
 if (pokemonList[i].height >= 1) {
-    document.write(`<h3> Bigger Pokemon</h3> ${pokemonList[i].name} <br> Type: ${pokemonList[i].type} <br> Height: ${pokemonList[i].height} - Wow, that/s big! <br> `)
+    document.write(`<h3> Bigger Pokemon</h3> ${pokemonList[i].name} <br> Type: ${pokemonList[i].type} <br> Height: ${pokemonList[i].height} - Wow, that's big! <br> `)
 }
     else {
         document.write(`<h3> Normal Pokemon</h3> ${pokemonList[i].name} <br> Type: ${pokemonList[i].type} <br> Height: ${pokemonList[i].height} <br> `)
