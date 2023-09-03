@@ -38,9 +38,6 @@ let pokemonList = [
         name: 'Mewtwo',
         type: ['Psychic'],
         species: 'Genetic',
-        name: 'Mewtwo',
-        type: ['Psychic'],
-        species: 'Genetic',
         height: 2,
         weight: 122,
 
@@ -50,16 +47,19 @@ let pokemonList = [
 function getAll() {
     return pokemonList;
 }
-function add (pokemon) {
-    pokemonList.push(pokemon);
+function add (item) {
+    pokemonList.push(item);
 }
 
 return {
-    getAll: function () {
+    getAll: function(){
         return pokemonList;
     },
+    add: function(item){
+        return pokemonList.push(item);
+    },
     return: {
-        add:add,
+        add: add,
         getAll: getAll
     }
 
@@ -70,7 +70,15 @@ return {
 // Using the get all function
 console.log(pokemonRepository.getAll());
 
+// adding a pokemon
+pokemonRepository.add({
+    name: 'Gengar',
+    type: ['Ghost, Poison'],
+    species: 'Shadow',
+    height: 1.5,
+    weight: 40,
 
+});
 
 //Part 1: forEach() Loops //
 /* 
