@@ -69,7 +69,8 @@ return {
 
 // Using the get all function
 console.log(pokemonRepository.getAll());
-//console.log(pokemonList);
+
+
 
 //Part 1: forEach() Loops //
 /* 
