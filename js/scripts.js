@@ -1,6 +1,6 @@
-let pokemonList = [];
+let pokemonRepository = (function () {
 
-pokemonList=[
+let pokemonList = [
     
     {
         name: 'Kadabra',
@@ -45,8 +45,30 @@ pokemonList=[
         weight: 122,
 
     }
-];
+]
 
+function getAll() {
+    return pokemonList;
+}
+function add (pokemon) {
+    pokemonList.push(pokemon);
+}
+
+return {
+    getAll: function () {
+        return pokemonList;
+    },
+    return: {
+        add:add,
+        getAll: getAll
+    }
+
+  };  
+
+})()
+
+// Using the get all function
+console.log(pokemonRepository.getAll());
 //console.log(pokemonList);
 
 //Part 1: forEach() Loops //
@@ -56,10 +78,9 @@ pokemonList.forEach(function(pokemon){
 });
 */
 
-//Part 1.1: forEach() Loops // 
+//Part 1.1: forEach() Loops // 2nd way //
 
-function getAllPokemonsInfo(pokemon){
-    document.write(`<h3>Pokemon</h3> ${pokemon.name} <br> Type: ${pokemon.type} <br> height: ${pokemon.height} <br> `)
-}
- pokemonList.forEach(getAllPokemonsInfo)
-  
+//function getAllPokemonsInfo(pokemon){
+  //  document.write(`<h3>Pokemon</h3> ${pokemon.name} <br> Type: ${pokemon.type} <br> height: ${pokemon.height} <br> `)
+//}
+// pokemonList.forEach(getAllPokemonsInfo)
