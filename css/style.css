@@ -34,9 +34,6 @@ img.pokemon-logo{
 .script__content  {
     margin: 10px;
     text-align: left;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr 1fr );
-    grid-auto-rows: 150px 150px 150px;
     padding: 10px;
     border: 16px solid #ffffff;
     border-radius: 5px;
@@ -45,3 +42,30 @@ img.pokemon-logo{
     background: #f2f2f2;
 
 }
+
+.button-class {
+    list-style-type: none;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    background-color: rgb(53, 91, 124);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    padding: 10px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    -o-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    width: 50%;
+    cursor: pointer;
+
+}
+
+li {
+    display: block;
+    color: rgb(13, 0, 51);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: inherit;
+  }

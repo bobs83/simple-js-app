@@ -1,4 +1,4 @@
-let pokemonRepository = (function () {
+var pokemonRepository = (function () {
 
 let pokemonList = [
     
@@ -62,9 +62,7 @@ return {
         add: add,
         getAll: getAll
     }
-
   };  
-
 })()
 
 // Using the get all function
@@ -79,6 +77,25 @@ pokemonRepository.add({
     weight: 40,
 
 });
+
+//practice//
+pokemonRepository.getAll().forEach(function (pokemon){
+    let pokemonList = document.querySelector(".pokemon-list");
+    let listpokemon = document.createElement("li");
+    let button = document.createElement("button");
+    button.innerText = pokemon.name;
+    button.classList.add("button-class");
+    listpokemon.appendChild(button);
+    pokemonList.appendChild(listpokemon);
+    
+});
+
+pokemonRepository.getAll().forEach(function(pokemon) {
+    pokemonRepository.addListItem(pokemon);
+}
+);
+// document.write(`<h3>Pokemon</h3> ${pokemon.name} <br> Type: ${pokemon.type} <br> height: ${pokemon.height} <br> `)
+
 
 //Part 1: forEach() Loops //
 /* 
