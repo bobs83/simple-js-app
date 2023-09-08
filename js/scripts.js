@@ -44,6 +44,14 @@ let pokemonList = [
     }
 ];
 
+// added the ajax with fetch.
+fetch('https://pokeapi.co/api/v2/pokemon/')
+.then(response => response.json()) 
+.catch(response => response ())
+.then(pokemonList => {
+    console.log(pokemonList)
+      });
+
 function showDetails(pokemon){
     console.log(pokemon);
   };
@@ -52,6 +60,7 @@ return {
     getAll: function getAll() {
       return pokemonList;
     },
+    // Validate whether all expected keys are present in the object using forEach loop
     add: function (item) {
       if (typeof item === "object" &&
        'name' in item && 
@@ -61,15 +70,20 @@ return {
        'weight' in item) {
         pokemonList.push(item);
       } else {
-        console.log("Please check your details");
+        console.log("Invalid Pokemon");
       }
     },
+    //Create public function, where the parameter represent a single Pokémon
     addListItem: function addListItem(pokemon) {
+    //Create a variable for <ul> element
       let pokemonList = document.querySelector(".pokemon-list");
       let listPokemon = document.createElement("li");
+            //Create <li> and btn elements 
       let button = document.createElement("button");
+     //Set the content of btn element and add a class  
         button.innerText = pokemon.name;
         button.classList.add("button-class");
+        //Append btn to <li> and <li> to <ul>
         listPokemon.appendChild(button);
         pokemonList.appendChild(listPokemon);
         button.addEventListener('click', () => showDetails(pokemon));
@@ -78,11 +92,12 @@ return {
 
 })();
 
-
+//Public functions assigned as keys of IIFE
+//Create `forEach();` function to iterate over the items in `pokemonList` array in order to display the details of each one as a <li> on index.html 
 pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
-// Using the get all function
+//Print all `pokemonList` array in console
 console.log(pokemonRepository.getAll());
 
 // adding a pokemon
