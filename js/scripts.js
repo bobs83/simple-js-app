@@ -87,7 +87,7 @@ let pokemonRepository = (function () {
     });
   }
 
-  //   Function to display the loading message
+  //  Create public a function show loding messssage while the data is being fetched
   function showLoadingMessage() {
     let div = document.querySelector(".loadPokemon");
     let paragraph = document.createElement("p");
@@ -112,6 +112,7 @@ pokemonRepository.loadList().then(function () {
     pokemonRepository.addListItem(pokemon);
   });
 });
+
 //Public functions assigned as keys of IIFE
 //Create `forEach();` function to iterate over the items in `pokemonList` array in order to display the details of each one as a <li> on index.html
 //pokemonRepository.getAll().forEach(function (pokemon) {
