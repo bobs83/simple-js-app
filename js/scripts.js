@@ -25,12 +25,17 @@ let pokemonRepository = (function () {
     let listPokemon = document.createElement("li");
     //Create <li> and btn elements
     let button = document.createElement("button");
+    //Create <img> element
+    let image = document.createElement("img");
+    image.src = pokemon.imageUrl;
     //Set the content of btn element and add a class
     button.innerText = pokemon.name;
     button.classList.add("button-class");
     //Append btn to <li> and <li> to <ul>
+    listPokemon.appendChild(image);
     listPokemon.appendChild(button);
     pokemonList.appendChild(listPokemon);
+    //Add event listener to btn
     button.addEventListener("click", function (event) {
       showDetails(pokemon);
     });
@@ -46,6 +51,7 @@ let pokemonRepository = (function () {
         json.results.forEach(function (item) {
           let pokemon = {
             name: item.name,
+            imageUrl: item.imageUrl,
             detailsUrl: item.url,
           };
           add(pokemon);
@@ -65,6 +71,7 @@ let pokemonRepository = (function () {
       })
       .then(function (details) {
         item.imageUrl = details.sprites.front_default;
+        item.weight = details.weight;
         item.height = details.height;
         item.types = details.types;
       })
