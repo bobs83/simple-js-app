@@ -64,6 +64,7 @@ let pokemonRepository = (function () {
 
   //Create public function to load details of a Pokémon from the API
   function loadDetails(item) {
+    showLoadingMessage();
     let url = item.detailsUrl;
     return fetch(url)
       .then(function (response) {
@@ -85,6 +86,16 @@ let pokemonRepository = (function () {
       console.log(pokemon);
     });
   }
+
+  //   Function to display the loading message
+  function showLoadingMessage() {
+    let div = document.querySelector(".loadPokemon");
+    let paragraph = document.createElement("p");
+    paragraph.classList.add("loadingMessage");
+    paragraph.innerText = ".......Loading......";
+    div.appendChild(paragraph);
+  }
+
   return {
     getAll: getAll,
     add: add,
@@ -92,6 +103,7 @@ let pokemonRepository = (function () {
     loadList: loadList,
     loadDetails: loadDetails,
     showDetails: showDetails,
+    showLoadingMessage: showLoadingMessage,
   };
 })();
 
