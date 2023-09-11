@@ -4,7 +4,7 @@ let pokemonRepository = (function () {
   //empty array
   let pokemonList = [];
   //Create variable for PokeAPI endpoint
-  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
+  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=10";
 
   function getAll() {
     return pokemonList;
@@ -31,7 +31,9 @@ let pokemonRepository = (function () {
     //Append btn to <li> and <li> to <ul>
     listPokemon.appendChild(button);
     pokemonList.appendChild(listPokemon);
-    button.addEventListener("click", () => showDetails(pokemon));
+    button.addEventListener("click", function (event) {
+      showDetails(pokemon);
+    });
   }
 
   //Create public function to fetch data -list of Pokémon- from the API
@@ -54,11 +56,35 @@ let pokemonRepository = (function () {
       });
   }
 
+  //Create public function to load details of a Pokémon from the API
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (details) {
+        item.imageUrl = details.sprites.front_default;
+        item.height = details.height;
+        item.types = details.types;
+      })
+      .catch(function (e) {
+        console.error(e);
+      });
+  }
+  //Create public function to show details "on click" of a Pokémon from the API
+  function showDetails(pokemon) {
+    loadDetails(pokemon).then(function () {
+      console.log(pokemon);
+    });
+  }
   return {
     getAll: getAll,
     add: add,
     addListItem: addListItem,
     loadList: loadList,
+    loadDetails: loadDetails,
+    showDetails: showDetails,
   };
 })();
 
