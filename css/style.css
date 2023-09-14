@@ -97,7 +97,7 @@ li {
   background: #fff;
   padding: 15px;
   width: 100%;
-  max-width: 700px;
+  max-width: 500px;
   text-align: left;
 }
 
@@ -111,10 +111,13 @@ li {
 }
 
 .modal h1 {
+  text-align: center;
+  float: center;
   margin-top: 0;
 }
 
 .modal p {
+  text-align: center;
   margin-bottom: 0;
 }
 
@@ -125,4 +128,15 @@ li {
 #modal-container.is-visible {
   /* CSS for modal container - add your own desired CSS styles here */
   display: block;
+}
+.modal img {
+  margin: 10px;
+}
+.close {
+  float: right;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
 }

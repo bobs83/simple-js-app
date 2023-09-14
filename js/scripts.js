@@ -17,6 +17,11 @@ let pokemonRepository = (function () {
     let modal = document.createElement("div");
     modal.classList.add("modal");
 
+    // added close event function by clicking 'X'
+    let closeButton = document.createElement("button");
+    closeButton.classList.add("close");
+    closeButton.innerText = "X";
+
     // add the new modal content // button object //
     let closeButtonElement = document.createElement("button");
     closeButtonElement.classList.add("modal-close");
@@ -29,18 +34,20 @@ let pokemonRepository = (function () {
     //added body
     let contentElement = document.createElement("p");
     contentElement.innerText =
-      "Height: " + pokemon.height + " Weight: " + pokemon.weight;
-    // added close event function by clicking 'X'
-    let closeButton = document.createElement("button");
-    closeButton.classList.add("close-button");
-    closeButton.innerText = "X";
+      "Height: " + pokemon.height + "," + " Weight: " + pokemon.weight;
+
+    //added image
+    let imageContainer = document.createElement("img");
+    imageContainer.src = pokemon.imageUrl;
 
     closeButton.addEventListener("click", hideModal);
 
-    modal.appendChild(closeButtonElement);
+    modal.appendChild(closeButton);
+    //modal.appendChild(closeButtonElement);
     modal.appendChild(titleElement);
     modal.appendChild(contentElement);
-    modal.appendChild(closeButton);
+    modal.appendChild(imageContainer);
+
     modalContainer.appendChild(modal);
 
     modalContainer.classList.add("is-visible");
@@ -143,11 +150,7 @@ let pokemonRepository = (function () {
 
   //  Create public a function show loding messssage while the data is being fetched
   function showLoadingMessage() {
-    let div = document.querySelector(".loadPokemon");
-    let paragraph = document.createElement("p");
-    paragraph.classList.add("loadingMessage");
-    paragraph.innerText = ".......Loading......";
-    div.appendChild(paragraph);
+    console.log("Loading...");
   }
 
   return {
