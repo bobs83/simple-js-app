@@ -6,6 +6,13 @@ let pokemonRepository = (function () {
   //Create variable for PokeAPI endpoint
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=10";
 
+  //Create variable for the <div> with the id of #modal-container
+  let modalContainer = document.querySelector("#modal-container");
+
+  function showModal(pokemon) {
+    modalContainer.innerHTML = "";
+  }
+
   function getAll() {
     return pokemonList;
   }
@@ -100,6 +107,7 @@ let pokemonRepository = (function () {
     loadDetails: loadDetails,
     showDetails: showDetails,
     showLoadingMessage: showLoadingMessage,
+    modalContainer: modalContainer,
   };
 })();
 
