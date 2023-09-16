@@ -92,9 +92,13 @@ let pokemonRepository = (function () {
     let listPokemon = document.createElement("li");
     //Create <li> and btn elements
     let button = document.createElement("button");
+    //Add classes to <li> element
+    //listItem.classList.add("list-group-item");
+    //added bootstrap grid for medium and large screens
+    //listItem.classList.add("col-4");
     //Set the content of btn element and add a class
     button.innerText = pokemon.name;
-    button.classList.add("button-class");
+    button.classList.add("btn");
     //Append btn to <li> and <li> to <ul>
     listPokemon.appendChild(button);
     pokemonList.appendChild(listPokemon);
