@@ -10,8 +10,8 @@ let pokemonRepository = (function () {
   //let modalContainer = document.querySelector("pokemonModal");
 
   function showModal(pokemon) {
-    let modalbody = $(".modal-body");
-    let modalTitle = $(".modal-title");
+    let modalBody = document.querySelector(".modal-body");
+    let modalTitle = document.querySelector(".modal-title");
     let modalHeader = $(".modal-header");
 
     modalTitle.empty();
@@ -21,10 +21,10 @@ let pokemonRepository = (function () {
     let nameElement = $("<h1>" + pokemon.name + "</h1>");
     //Create element for image in modal content
     let imgElementFront = $('<img class="modal-img" style="width:50%">');
-    imgElementFront.attr("src", pokemon.imageUrlFront);
+    imgElementFront.attr("src", pokemon.imageUrl);
     let heightElement = $("<p>" + "Height : " + details.height + "</p>");
-    let weightElement = $("<p>" + "Weight : " + pokemon.weight + "</p>");
-    let typesElement = $("<p>" + "Types : " + pokemon.types + "</p>");
+    let weightElement = $("<p>" + "Weight : " + details.weight + "</p>");
+    let typesElement = $("<p>" + "Types : " + details.types + "</p>");
 
     modalTitle.append(nameElement);
     modalBody.append(imgElementFront);
@@ -58,12 +58,13 @@ let pokemonRepository = (function () {
     let listItemButtonLabel = document.createElement("div");
     listItemButtonLabel.innerText = pokemon.name;
 
-    let ImageUrl = document.createElement("img");
-    // ImageUrl.classList.add("");
+    let previewImageUrl = document.createElement("img");
+    previewImageUrl.scr = pokemon.previewImageUrl;
 
     listItemButton.appendChild(listItemButtonLabel);
     listItem.appendChild(listItemButton);
     pokemonList.appendChild(listItem);
+    listItemButton.appendChild(previewImageUrl);
   }
 
   //Create public function to fetch data -list of Pokémon- from the API
@@ -96,6 +97,7 @@ let pokemonRepository = (function () {
         return response.json();
       })
       .then(function (details) {
+        item.previewImageUrl = details.sprites.front_default;
         item.imageUrl = details.sprites.front_default;
         item.weight = details.weight;
         item.height = details.height;
@@ -113,9 +115,9 @@ let pokemonRepository = (function () {
   }
 
   //  Create public a function show loding messssage while the data is being fetched
-  function showLoadingMessage() {
-    console.log("Loading...");
-  }
+  // function showLoadingMessage() {
+  //   console.log("Loading...");
+  // }
 
   return {
     getAll: getAll,
@@ -124,7 +126,7 @@ let pokemonRepository = (function () {
     loadList: loadList,
     loadDetails: loadDetails,
     showDetails: showDetails,
-    showLoadingMessage: showLoadingMessage,
+    // showLoadingMessage: showLoadingMessage,
   };
 })();
 
