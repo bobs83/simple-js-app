@@ -7,9 +7,31 @@ let pokemonRepository = (function () {
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=50";
 
   //Create variable for the <div> with the id of #modal-container
-  let modalContainer = document.querySelector("#modal-container");
+  //let modalContainer = document.querySelector("pokemonModal");
 
-  function showModal(pokemon) {}
+  function showModal(pokemon) {
+    let modalbody = $(".modal-body");
+    let modalTitle = $(".modal-title");
+    let modalHeader = $(".modal-header");
+
+    modalTitle.empty();
+    modalbody.empty();
+
+    //Create element for name in modal content
+    let nameElement = $("<h1>" + pokemon.name + "</h1>");
+    //Create element for image in modal content
+    let imgElementFront = $('<img class="modal-img" style="width:50%">');
+    imgElementFront.attr("src", pokemon.imageUrlFront);
+    let heightElement = $("<p>" + "Height : " + details.height + "</p>");
+    let weightElement = $("<p>" + "Weight : " + pokemon.weight + "</p>");
+    let typesElement = $("<p>" + "Types : " + pokemon.types + "</p>");
+
+    modalTitle.append(nameElement);
+    modalBody.append(imgElementFront);
+    modalBody.append(heightElement);
+    modalBody.append(weightElement);
+    modalBody.append(typesElement);
+  }
 
   function getAll() {
     return pokemonList;
@@ -26,7 +48,7 @@ let pokemonRepository = (function () {
 
   //Create public function, where the parameter represent a single Pokémon
   function addListItem(pokemon) {
-    let pokemonList = document.querySelector(".pokemon-list");
+    let pokemonList = document.querySelector(".list-group");
     let listItem = document.createElement("li");
     listItem.classList.add("list__item", "list-group-item");
     let listItemButton = document.createElement("button");
@@ -35,6 +57,9 @@ let pokemonRepository = (function () {
     listItemButton.setAttribute("data-target", "#pokemonModal");
     let listItemButtonLabel = document.createElement("div");
     listItemButtonLabel.innerText = pokemon.name;
+
+    let ImageUrl = document.createElement("img");
+    // ImageUrl.classList.add("");
 
     listItemButton.appendChild(listItemButtonLabel);
     listItem.appendChild(listItemButton);
@@ -64,7 +89,7 @@ let pokemonRepository = (function () {
 
   //Create public function to load details of a Pokémon from the API
   function loadDetails(item) {
-    showLoadingMessage();
+    //showLoadingMessage();
     let url = item.detailsUrl;
     return fetch(url)
       .then(function (response) {
