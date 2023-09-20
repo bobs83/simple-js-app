@@ -6,25 +6,21 @@ let pokemonRepository = (function () {
   //Create variable for PokeAPI endpoint
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=50";
 
-  //Create variable for the <div> with the id of #modal-container
-  //let modalContainer = document.querySelector("pokemonModal");
-
   function showModal(pokemon) {
-    let modalBody = document.querySelector(".modal-body");
-    let modalTitle = document.querySelector(".modal-title");
-    let modalHeader = $(".modal-header");
+    let modalBody = $(".modal-body");
+    let modalTitle = $(".modal-title");
 
     modalTitle.empty();
-    modalbody.empty();
+    modalBody.empty();
 
     //Create element for name in modal content
     let nameElement = $("<h1>" + pokemon.name + "</h1>");
     //Create element for image in modal content
     let imgElementFront = $('<img class="modal-img" style="width:50%">');
     imgElementFront.attr("src", pokemon.imageUrl);
-    let heightElement = $("<p>" + "Height : " + details.height + "</p>");
-    let weightElement = $("<p>" + "Weight : " + details.weight + "</p>");
-    let typesElement = $("<p>" + "Types : " + details.types + "</p>");
+    let heightElement = $("<p>" + "Height : " + pokemon.height + "</p>");
+    let weightElement = $("<p>" + "Weight : " + pokemon.weight + "</p>");
+    let typesElement = $("<p>" + "Types : " + pokemon.types + "</p>");
 
     modalTitle.append(nameElement);
     modalBody.append(imgElementFront);
@@ -58,8 +54,14 @@ let pokemonRepository = (function () {
     let listItemButtonLabel = document.createElement("div");
     listItemButtonLabel.innerText = pokemon.name;
 
+    listItemButton.addEventListener("click", function () {
+      showDetails(pokemon);
+    });
+
     let previewImageUrl = document.createElement("img");
-    previewImageUrl.scr = pokemon.previewImageUrl;
+    previewImageUrl.classList.add("pokemon-block__image");
+    previewImageUrl.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`;
+    listItemButton.setAttribute("id", pokemon.id);
 
     listItemButton.appendChild(listItemButtonLabel);
     listItem.appendChild(listItemButton);
@@ -77,6 +79,7 @@ let pokemonRepository = (function () {
         json.results.forEach(function (item) {
           let pokemon = {
             name: item.name,
+            //id: index + 1,
             imageUrl: item.imageUrl,
             detailsUrl: item.url,
           };
@@ -97,7 +100,6 @@ let pokemonRepository = (function () {
         return response.json();
       })
       .then(function (details) {
-        item.previewImageUrl = details.sprites.front_default;
         item.imageUrl = details.sprites.front_default;
         item.weight = details.weight;
         item.height = details.height;
