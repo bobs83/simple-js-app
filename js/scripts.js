@@ -63,9 +63,8 @@ let pokemonRepository = (function () {
 
     let previewImageUrl = document.createElement("img");
     previewImageUrl.classList.add("pokemon-block__image");
-
-    //previewImageUrl.src = `https://raw.githubusercontent.com/PokeAPI/sprites/…ter/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
-    previewImageUrl.src = `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${pokemon.id}.svg`;
+    previewImageUrl.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon.id}.gif`;
+    // previewImageUrl.src = `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${pokemon.id}.svg`;
     listItemButton.setAttribute("id", pokemon.id);
 
     listItemButton.appendChild(listItemButtonLabel);
@@ -107,7 +106,7 @@ let pokemonRepository = (function () {
       .then(function (details) {
         item.imageUrl = details.sprites.other["official-artwork"].front_default;
         item.imageUrlBack =
-          details.sprites.other["official-artwork"].front_shiny;
+          details.sprites.other["official-artwork"].front_default;
         item.weight = details.weight;
         item.height = details.height;
         item.types = details.types;
