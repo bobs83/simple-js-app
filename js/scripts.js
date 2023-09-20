@@ -10,21 +10,20 @@ let pokemonRepository = (function () {
   //let modalContainer = document.querySelector("pokemonModal");
 
   function showModal(pokemon) {
-    let modalBody = document.querySelector(".modal-body");
-    let modalTitle = document.querySelector(".modal-title");
-    let modalHeader = $(".modal-header");
+    let modalBody = $(".modal-body");
+    let modalTitle = $(".modal-title");
 
     modalTitle.empty();
-    modalbody.empty();
+    modalBody.empty();
 
     //Create element for name in modal content
     let nameElement = $("<h1>" + pokemon.name + "</h1>");
     //Create element for image in modal content
     let imgElementFront = $('<img class="modal-img" style="width:50%">');
     imgElementFront.attr("src", pokemon.imageUrl);
-    let heightElement = $("<p>" + "Height : " + details.height + "</p>");
-    let weightElement = $("<p>" + "Weight : " + details.weight + "</p>");
-    let typesElement = $("<p>" + "Types : " + details.types + "</p>");
+    let heightElement = $("<p>" + "Height : " + pokemon.height + "</p>");
+    let weightElement = $("<p>" + "Weight : " + pokemon.weight + "</p>");
+    let typesElement = $("<p>" + "Types : " + pokemon.types + "</p>");
 
     modalTitle.append(nameElement);
     modalBody.append(imgElementFront);
@@ -58,16 +57,17 @@ let pokemonRepository = (function () {
     let listItemButtonLabel = document.createElement("div");
     listItemButtonLabel.innerText = pokemon.name;
 
-    let previewImageUrl = document.createElement("img");
-    previewImageUrl.scr = pokemon.previewImageUrl;
+    listItemButton.addEventListener("click", function () {
+      showDetails(pokemon);
+    });
 
     listItemButton.appendChild(listItemButtonLabel);
     listItem.appendChild(listItemButton);
     pokemonList.appendChild(listItem);
-    listItemButton.appendChild(previewImageUrl);
   }
 
   //Create public function to fetch data -list of Pokémon- from the API
+
   function loadList() {
     return fetch(apiUrl)
       .then(function (response) {
@@ -77,6 +77,7 @@ let pokemonRepository = (function () {
         json.results.forEach(function (item) {
           let pokemon = {
             name: item.name,
+            previewImageUrl: item.sprites.front_default,
             imageUrl: item.imageUrl,
             detailsUrl: item.url,
           };
@@ -97,7 +98,6 @@ let pokemonRepository = (function () {
         return response.json();
       })
       .then(function (details) {
-        item.previewImageUrl = details.sprites.front_default;
         item.imageUrl = details.sprites.front_default;
         item.weight = details.weight;
         item.height = details.height;
