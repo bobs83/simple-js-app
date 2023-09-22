@@ -32,7 +32,7 @@
         <input
           type="search"
           id="form1"
-          class="form-control"
+          class="search-container"
           placeholder="Search Pokémon - Gotta Catch ‘Em All!"
         />
       </div>
@@ -58,17 +58,33 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">TITLE</h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <h5 class="modal-title"></h5>
             </div>
-            <div class="modal-body">....</div>
+            <div class="modal-body"></div>
+            <div class="img-container">
+              <img
+                id="update_img"
+                img
+                class="modal-img"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+                alt="Pic of pokemon"
+                srcset=""
+              />
+            </div>
+            <div class="attributes-container">
+              <div class="col attributes-content" style="min-width: 40%">
+                <p class="cp-text" id="update_type">Electric / Speed</p>
+                <small class="text-muted">Type</small>
+              </div>
+              <div class="col attributes-content">
+                <p class="cp-text" id="update_weight">5.58kg</p>
+                <small class="text-muted">Weight</small>
+              </div>
+              <div class="col attributes-content">
+                <p class="cp-text no-border" id="update_height">0.82m</p>
+                <small class="text-muted">Height</small>
+              </div>
+            </div>
             <div class="modal-footer">
               <button
                 type="button"
@@ -76,9 +92,6 @@
                 data-dismiss="modal"
               >
                 Close
-              </button>
-              <button type="button" class="btn btn-primary">
-                Save changes
               </button>
             </div>
           </div>

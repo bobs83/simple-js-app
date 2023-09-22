@@ -6,36 +6,15 @@ let pokemonRepository = (function () {
   //Create variable for PokeAPI endpoint
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=50";
 
-  function showModal(pokemon) {
-    let modalBody = $(".modal-body");
-    let modalTitle = $(".modal-title");
-
-    modalTitle.empty();
-    modalBody.empty();
-
-    //Create element for name in modal content
-    let nameElement = $("<h1>" + pokemon.name + "</h1>");
-    //Create element for image in modal content
-    let imgElementFront = $('<img class="modal-img" style="width:50%">');
-    imgElementFront.attr("src", pokemon.imageUrl);
-    let imgElementBack = $('<img class="modal-img" style="width:50%">');
-    imgElementBack.attr("src", pokemon.imageUrlBack);
-    let heightElement = $("<p>" + "Height : " + pokemon.height + "</p>");
-    let weightElement = $("<p>" + "Weight : " + pokemon.weight + "</p>");
-    let typesElement = $("<p>" + "Types : " + pokemon.types + "</p>");
-
-    modalTitle.append(nameElement);
-    modalBody.append(imgElementFront);
-    modalBody.append(imgElementBack);
-    modalBody.append(heightElement);
-    modalBody.append(weightElement);
-    modalBody.append(typesElement);
-  }
-
   function getAll() {
     return pokemonList;
   }
-
+  //Create public function to show details "on click" of a Pokémon from the API
+  function showDetails(pokemon) {
+    loadDetails(pokemon).then(function () {
+      showModal(pokemon);
+    });
+  }
   //Validate whether a type of the parameter is an object and all expected keys are present in the object
   function add(item) {
     if (typeof item === "object" && "name" in item && "detailsUrl" in item) {
@@ -73,6 +52,59 @@ let pokemonRepository = (function () {
     listItemButton.appendChild(previewImageUrl);
   }
 
+  function showModal(pokemon) {
+    let modalBody = $(".modal-body");
+    let modalTitle = $(".modal-title");
+
+    modalTitle.empty();
+    modalBody.empty();
+
+    //Create element for name in modal content
+    let nameElement = $("<h1>" + pokemon.name + "</h1>");
+
+    //Create element for image in modal content
+    let imgElementFront = $('<img class="modal-img" style="width:50%">');
+
+    imgElementFront.attr("src", pokemon.imageUrl);
+    let imgElementBack = $('<img class="modal-img" style="width:50%">');
+
+    imgElementBack.attr("src", pokemon.imageUrlBack);
+    let heightElement = $("<p>" + "Height : " + pokemon.height + "</p>");
+    let weightElement = $("<p>" + "Weight : " + pokemon.weight + "</p>");
+    let typesElement = $("<p>" + "Types : " + pokemon.types + "</p>");
+
+    modalTitle.append(nameElement);
+    modalBody.append(imgElementFront);
+    modalBody.append(imgElementBack);
+    modalBody.append(heightElement);
+    modalBody.append(weightElement);
+    modalBody.append(typesElement);
+  }
+
+  //Create public function to load details of a Pokémon from the API
+  function loadDetails(item) {
+    //showLoadingMessage();
+    let url = item.detailsUrl;
+    return fetch(url)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (details) {
+        item.imageUrl = details.sprites.other["official-artwork"].front_default;
+        item.imageUrlBack =
+          details.sprites.versions["generation-iv"].back_default;
+        item.weight = details.weight;
+        item.height = details.height;
+        item.types = [];
+        for (var i = 0; i < details.types.length; i++) {
+          item.types.push(details.types[i].type.name);
+        }
+      })
+      .catch(function (e) {
+        console.error(e);
+      });
+  }
+
   //Create public function to fetch data -list of Pokémon- from the API
   function loadList() {
     return fetch(apiUrl)
@@ -95,38 +127,6 @@ let pokemonRepository = (function () {
       });
   }
 
-  //Create public function to load details of a Pokémon from the API
-  function loadDetails(item) {
-    //showLoadingMessage();
-    let url = item.detailsUrl;
-    return fetch(url)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (details) {
-        item.imageUrl = details.sprites.other["official-artwork"].front_default;
-        item.imageUrlBack =
-          details.sprites.other["official-artwork"].front_default;
-        item.weight = details.weight;
-        item.height = details.height;
-        item.types = details.types;
-      })
-      .catch(function (e) {
-        console.error(e);
-      });
-  }
-  //Create public function to show details "on click" of a Pokémon from the API
-  function showDetails(pokemon) {
-    loadDetails(pokemon).then(function () {
-      showModal(pokemon);
-    });
-  }
-
-  //  Create public a function show loding messssage while the data is being fetched
-  // function showLoadingMessage() {
-  //   console.log("Loading...");
-  // }
-
   return {
     getAll: getAll,
     add: add,
@@ -144,6 +144,10 @@ pokemonRepository.loadList().then(function () {
   });
 });
 
+//  Create public a function show loding messssage while the data is being fetched
+// function showLoadingMessage() {
+//   console.log("Loading...");
+// }
 //Public functions assigned as keys of IIFE
 //Create `forEach();` function to iterate over the items in `pokemonList` array in order to display the details of each one as a <li> on index.html
 //pokemonRepository.getAll().forEach(function (pokemon) {
