@@ -64,11 +64,7 @@ let pokemonRepository = (function () {
 
     //Create element for image in modal content
     let imgElementFront = $('<img class="modal-img">');
-
     imgElementFront.attr("src", pokemon.imageUrl);
-    let imgElementBack = $('<img class="modal-img" style="width:50%">');
-
-    imgElementBack.attr("src", pokemon.imageUrlBack);
 
     let heightElement = $("<p>" + "Height : " + pokemon.height + "</p>");
     let weightElement = $("<p>" + "Weight : " + pokemon.weight + "</p>");
@@ -76,7 +72,6 @@ let pokemonRepository = (function () {
 
     modalTitle.append(nameElement);
     modalBody.append(imgElementFront);
-    modalBody.append(imgElementBack);
     modalBody.append(heightElement);
     modalBody.append(weightElement);
     modalBody.append(typesElement);
@@ -92,8 +87,6 @@ let pokemonRepository = (function () {
       })
       .then(function (details) {
         item.imageUrl = details.sprites.other["official-artwork"].front_default;
-        item.imageUrlBack =
-          details.sprites.versions["generation-iv"].back_default;
         item.weight = details.weight;
         item.height = details.height;
         item.types = [];
