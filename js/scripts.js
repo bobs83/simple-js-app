@@ -24,7 +24,7 @@ let pokemonRepository = (function () {
     }
   }
 
-  // Added function for search bar but dont know how to attach to the
+  // Added function for search bar but dont know how to connect it with the loadlist function. Please help me!
   let searchBar = document.getElementById("form1");
   searchBar.addEventListener("keyup", (e) => {
     let searchString = e.target.value;
@@ -32,11 +32,8 @@ let pokemonRepository = (function () {
       return pokemon.name.includes(searchString);
     });
     console.log(filterdPokemon);
+    // showModal(filterdPokemon);
   });
-
-  function find(name) {
-    return pokemonList.find((pokemon) => pokemon.name === name);
-  }
 
   //Create public function, where the parameter represent a single Pokémon
   function addListItem(pokemon) {
@@ -114,24 +111,27 @@ let pokemonRepository = (function () {
 
   //Create public function to fetch data -list of Pokémon- from the API
   function loadList() {
-    return fetch(apiUrl)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (json) {
-        json.results.forEach(function (item, index) {
-          let pokemon = {
-            id: index + 1,
-            name: item.name,
-            imageUrl: item.imageUrl,
-            detailsUrl: item.url,
-          };
-          add(pokemon);
-        });
-      })
-      .catch(function (e) {
-        console.error(e);
-      });
+    return (
+      fetch(apiUrl)
+        //  showmodal(pokemonList); ???
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (json) {
+          json.results.forEach(function (item, index) {
+            let pokemon = {
+              id: index + 1,
+              name: item.name,
+              imageUrl: item.imageUrl,
+              detailsUrl: item.url,
+            };
+            add(pokemon);
+          });
+        })
+        .catch(function (e) {
+          console.error(e);
+        })
+    );
   }
 
   return {
