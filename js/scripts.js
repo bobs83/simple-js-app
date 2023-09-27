@@ -54,7 +54,6 @@ let pokemonRepository = (function () {
     let previewImageUrl = document.createElement("img");
     previewImageUrl.classList.add("pokemon-block__image");
     previewImageUrl.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${pokemon.id}.gif`;
-    // previewImageUrl.src = `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${pokemon.id}.svg`;
     listItemButton.setAttribute("id", pokemon.id);
 
     listItemButton.appendChild(listItemButtonLabel);
@@ -149,57 +148,3 @@ pokemonRepository.loadList().then(function () {
     pokemonRepository.addListItem(pokemon);
   });
 });
-
-//  Create public a function show loding messssage while the data is being fetched
-// function showLoadingMessage() {
-//   console.log("Loading...");
-// }
-//Public functions assigned as keys of IIFE
-//Create `forEach();` function to iterate over the items in `pokemonList` array in order to display the details of each one as a <li> on index.html
-//pokemonRepository.getAll().forEach(function (pokemon) {
-//.//  pokemonRepository.addListItem(pokemon);
-//});
-//Print all `pokemonList` array in console
-//console.log(pokemonRepository.getAll());
-
-// adding a pokemon
-//pokemonRepository.add({
-//  name: 'Gengar',
-//  type: ['Ghost, Poison'],
-//species: 'Shadow',
-//height: 1.5,
-//weight: 40,
-
-//});
-
-//practice//
-//pokemonRepository.getAll().forEach(function (pokemon){
-//  let pokemonList = document.querySelector(".pokemon-list");
-//  let listpokemon = document.createElement("li");
-//  let button = document.createElement("button");
-// button.innerText = pokemon.name;
-//  button.classList.add("button-class");
-// listpokemon.appendChild(button);
-// pokemonList.appendChild(listpokemon);
-
-//});
-
-//pokemonRepository.getAll().forEach(function(pokemon) {
-//   pokemonRepository.addListItem(pokemon);
-//}
-//);
-// document.write(`<h3>Pokemon</h3> ${pokemon.name} <br> Type: ${pokemon.type} <br> height: ${pokemon.height} <br> `)
-
-//Part 1: forEach() Loops //
-/* 
-pokemonList.forEach(function(pokemon){
-    document.write(`<h3>Pokemon</h3> ${pokemon.name} <br> Type: ${pokemon.type} <br> height: ${pokemon.height} <br> `)
-});
-*/
-
-//Part 1.1: forEach() Loops // 2nd way //
-
-//function getAllPokemonsInfo(pokemon){
-//  document.write(`<h3>Pokemon</h3> ${pokemon.name} <br> Type: ${pokemon.type} <br> height: ${pokemon.height} <br> `)
-//}
-// pokemonList.forEach(getAllPokemonsInfo)
