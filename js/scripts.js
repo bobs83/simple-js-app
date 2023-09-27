@@ -76,15 +76,24 @@ let pokemonRepository = (function () {
     let imgElementFront = $('<img class="modal-img">');
     imgElementFront.attr("src", pokemon.imageUrl);
 
-    let heightElement = $("<p>" + "Height : " + pokemon.height + "</p>");
-    let weightElement = $("<p>" + "Weight : " + pokemon.weight + "</p>");
-    let typesElement = $("<p>" + "Types : " + pokemon.types + "</p>");
+    let typesElement = $(
+      "<span>" +
+        "Types : " +
+        pokemon.types +
+        // " / " +
+        // pokemon.types[1] How do i write a condiatioanl statement here?? How?
+        "</span>"
+    );
+    let heightElement = $("<p>" + "Height : " + pokemon.height + "m " + "</p>");
+    let weightElement = $(
+      "<p>" + "Weight : " + pokemon.weight + " kg " + "</p>"
+    );
 
     modalTitle.append(nameElement);
     modalBody.append(imgElementFront);
+    modalBody.append(typesElement);
     modalBody.append(heightElement);
     modalBody.append(weightElement);
-    modalBody.append(typesElement);
   }
 
   //Create public function to load details of a Pokémon from the API
