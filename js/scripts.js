@@ -24,6 +24,20 @@ let pokemonRepository = (function () {
     }
   }
 
+  // Added function for search bar but dont know how to attach to the
+  let searchBar = document.getElementById("form1");
+  searchBar.addEventListener("keyup", (e) => {
+    let searchString = e.target.value;
+    let filterdPokemon = pokemonList.filter((pokemon) => {
+      return pokemon.name.includes(searchString);
+    });
+    console.log(filterdPokemon);
+  });
+
+  function find(name) {
+    return pokemonList.find((pokemon) => pokemon.name === name);
+  }
+
   //Create public function, where the parameter represent a single Pokémon
   function addListItem(pokemon) {
     let pokemonList = document.querySelector(".list-group");
@@ -79,7 +93,6 @@ let pokemonRepository = (function () {
 
   //Create public function to load details of a Pokémon from the API
   function loadDetails(item) {
-    //showLoadingMessage();
     let url = item.detailsUrl;
     return fetch(url)
       .then(function (response) {
@@ -128,7 +141,6 @@ let pokemonRepository = (function () {
     loadList: loadList,
     loadDetails: loadDetails,
     showDetails: showDetails,
-    // showLoadingMessage: showLoadingMessage,
   };
 })();
 
