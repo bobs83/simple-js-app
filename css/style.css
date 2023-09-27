@@ -31,6 +31,25 @@ img.logo {
   border: 1px solid #ccc;
 }
 
+.btn-primary {
+  justify-content: space-evenly !important;
+  align-items: center;
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  padding: 0 0 0 10px;
+  align-items: center;
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  border: 3px solid rgb(230, 227, 231);
+  background-image: url("/img/2.svg");
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #3697cbcc;
+  border-color: #009ea9;
+}
+
 .list-group {
   display: flex;
   align-content: center;
@@ -39,22 +58,10 @@ img.logo {
   margin-top: 50px;
   flex-flow: row wrap;
 }
-
-.btn-secondary {
-  color: #fff;
-  background-color: #06787e;
-  border-color: #06787e;
-}
-
-.list-group-item button {
-  display: flex;
-  align-items: center;
-  text-transform: capitalize;
-  font-size: 1.1rem;
-  border: 5px solid rgb(230, 227, 231);
-  padding: 0 0 0 10px;
-  background-image: url("/img/2.svg");
-  justify-content: space-evenly !important;
+.list-group-item {
+  background-color: #ffffff;
+  padding: 0.7rem 0.7rem;
+  margin: 0% 1% 2% 1%;
 }
 
 .pokemon-block {
@@ -62,9 +69,7 @@ img.logo {
   background-color: #205d7ecc;
   width: 180px;
   height: 180px;
-  color: #fff;
   transition: 0.5s ease-in-out;
-  border-radius: 20px;
   padding: 0 5px;
 }
 .pokemon-block__image {
