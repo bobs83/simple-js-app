@@ -58,7 +58,7 @@ h1 {
   font-size: 1.4rem;
   font-weight: 600;
   border: 3px solid rgb(214, 205, 216);
-  background-image: url("./img/pokeball.png");
+  background-image: url("../img/pokeball.png");
   background-size: 100%;
   background-repeat: no-repeat center;
   background-color: #3f73c8;
@@ -67,7 +67,6 @@ h1 {
     font-size: 2.5rem;
   }
 }
-
 .btn-primary:hover {
   color: #fff;
   background-color: #2f749acc;
