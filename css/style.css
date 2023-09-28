@@ -58,11 +58,10 @@ h1 {
   font-size: 1.4rem;
   font-weight: 600;
   border: 3px solid rgb(214, 205, 216);
-  background-image: url("/img/2.svg");
+  background-image: url("./img/pokeball.png");
   background-size: 100%;
   background-repeat: no-repeat center;
   background-color: #3f73c8;
-  z-index: 2;
 
   @media screen and (max-width: 455px) {
     font-size: 2.5rem;
