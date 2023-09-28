@@ -23,17 +23,48 @@ let pokemonRepository = (function () {
       console.log("Please check the inputs");
     }
   }
+  // Create a function to filter the list of Pokémon based on the search input / got this from my tutor but cant get it to work
+  // maybe we can go through it together in our session?
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Reference to the search input and results div
+    const searchInput = document.getElementById("form1");
+    const resultsDiv = document.getElementById("results");
+
+    // Sample data returned by API (for the sake of this example)
+    const pokemons = [];
+
+    // Event listener for the search input
+    searchInput.addEventListener("keyup", function () {
+      const query = searchInput.value.toLowerCase();
+      const filteredPokemons = pokemonList.filter((pokemon) =>
+        pokemon.name.toLowerCase().includes(query)
+      );
+
+      displayResults(filteredPokemons);
+    });
+
+    function displayResults(pokemonList) {
+      document.getElementById("results").innerHTML = ""; // Clearing the previous results
+
+      pokemonList.forEach((pokemon) => {
+        const pokemonDiv = document.createElement("div");
+        pokemonDiv.textContent = `${pokemon.name} (${pokemon.type})`;
+        resultsDiv.appendChild(pokemonDiv);
+      });
+    }
+  });
 
   // Added function for search bar but dont know how to connect it with the loadlist function. Please help me!
-  let searchBar = document.getElementById("form1");
-  searchBar.addEventListener("keyup", (e) => {
-    let searchString = e.target.value;
-    let filterdPokemon = pokemonList.filter((pokemon) => {
-      return pokemon.name.includes(searchString);
-    });
-    console.log(filterdPokemon);
-    // showModal(filterdPokemon);
-  });
+  //let searchBar = document.getElementById("form1");
+  //searchBar.addEventListener("keyup", (e) => {
+  //let searchString = e.target.value;
+  //let filterdPokemon = pokemonList.filter((pokemon) => {
+  //return pokemon.name.includes(searchString);
+  //});
+  //console.log(filterdPokemon);
+  // showModal(filterdPokemon);
+  // });
 
   //Create public function, where the parameter represent a single Pokémon
   function addListItem(pokemon) {
