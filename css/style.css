@@ -6,7 +6,6 @@ body {
   text-transform: capitalize;
   font-weight: 400;
 }
-
 nav {
   background-color: #eaf2ef;
   align-items: center;
@@ -47,7 +46,6 @@ h1 {
   justify-content: center;
   border: 1px solid #ccc;
 }
-
 .btn-primary {
   text-shadow: rgb(73, 82, 80) 1px 0 10px;
   color: rgb(231, 228, 228);
@@ -73,7 +71,6 @@ h1 {
   border-color: #24678ccc;
   transition: 0.5s ease-in-out;
 }
-
 .list-group {
   display: flex;
   align-content: center;
@@ -89,7 +86,6 @@ h1 {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
-
 .pokemon-block {
   display: table-row;
   background-color: #10637ccc;
@@ -109,27 +105,22 @@ h1 {
   width: 30%;
   filter: drop-shadow(0 0 0.6rem rgb(73, 69, 70));
 }
-
 .modal-img {
   width: 50%;
   margin-bottom: 2%;
 }
-
 .modal {
   background-color: rgba(138, 135, 137, 0.265);
 }
-
 .modal-header {
   border-bottom: none;
   align-self: center;
   font-weight: 600;
   text-transform: capitalize;
 }
-
 .modal-title {
   border: none;
 }
-
 .modal-content {
   background-color: #e1dbdb;
   margin: 0;
@@ -137,7 +128,6 @@ h1 {
   justify-content: center;
   border-radius: 20px;
 }
-
 .modal-body {
   display: flex;
   flex-flow: column wrap;
