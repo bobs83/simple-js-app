@@ -4,7 +4,7 @@ let pokemonRepository = (function () {
   //empty array
   let pokemonList = [];
   //Create variable for PokeAPI endpoint
-  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=50";
+  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=350";
 
   function getAll() {
     return pokemonList;
@@ -23,48 +23,32 @@ let pokemonRepository = (function () {
       console.log("Please check the inputs");
     }
   }
-  // Create a function to filter the list of Pokémon based on the search input / got this from my tutor but cant get it to work
-  // maybe we can go through it together in our session?
+  // Create a function to filter the list of Pokémon based on the search input and display the filtered results
 
   document.addEventListener("DOMContentLoaded", function () {
-    // Reference to the search input and results div
-    const searchInput = document.getElementById("form1");
-    const resultsDiv = document.getElementById("results");
-
-    // Sample data returned by API (for the sake of this example)
-    const pokemons = [];
+    const searchInput = document.getElementById("search-input");
+    const pokemonListElement = document.querySelector(".pokemon-list");
 
     // Event listener for the search input
     searchInput.addEventListener("keyup", function () {
       const query = searchInput.value.toLowerCase();
-      const filteredPokemons = pokemonList.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(query)
-      );
+      const filteredPokemons = pokemonRepository
+        .getAll()
+        .filter((pokemon) => pokemon.name.toLowerCase().includes(query));
 
-      displayResults(filteredPokemons);
+      // Clear current list and display filtered results
+      displayFilteredResults(filteredPokemons);
     });
 
-    function displayResults(pokemonList) {
-      document.getElementById("results").innerHTML = ""; // Clearing the previous results
-
-      pokemonList.forEach((pokemon) => {
-        const pokemonDiv = document.createElement("div");
-        pokemonDiv.textContent = `${pokemon.name} (${pokemon.type})`;
-        resultsDiv.appendChild(pokemonDiv);
+    function displayFilteredResults(filteredPokemons) {
+      // Clear the current list of Pokémon
+      pokemonListElement.innerHTML = "";
+      // Re-populate the list with filtered Pokémon
+      filteredPokemons.forEach((pokemon) => {
+        pokemonRepository.addListItem(pokemon);
       });
     }
   });
-
-  // Added function for search bar but dont know how to connect it with the loadlist function. Please help me!
-  //let searchBar = document.getElementById("form1");
-  //searchBar.addEventListener("keyup", (e) => {
-  //let searchString = e.target.value;
-  //let filterdPokemon = pokemonList.filter((pokemon) => {
-  //return pokemon.name.includes(searchString);
-  //});
-  //console.log(filterdPokemon);
-  // showModal(filterdPokemon);
-  // });
 
   //Create public function, where the parameter represent a single Pokémon
   function addListItem(pokemon) {
@@ -107,14 +91,7 @@ let pokemonRepository = (function () {
     let imgElementFront = $('<img class="modal-img">');
     imgElementFront.attr("src", pokemon.imageUrl);
 
-    let typesElement = $(
-      "<span>" +
-        "Types : " +
-        pokemon.types +
-        // " / " +
-        // pokemon.types[1] How do i write a condiatioanl statement here?? How?
-        "</span>"
-    );
+    let typesElement = $("<span>" + "Types : " + pokemon.types + "</span>");
     let heightElement = $("<p>" + "Height : " + pokemon.height + "m " + "</p>");
     let weightElement = $(
       "<p>" + "Weight : " + pokemon.weight + " kg " + "</p>"
@@ -150,27 +127,24 @@ let pokemonRepository = (function () {
 
   //Create public function to fetch data -list of Pokémon- from the API
   function loadList() {
-    return (
-      fetch(apiUrl)
-        //  showmodal(pokemonList); ???
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (json) {
-          json.results.forEach(function (item, index) {
-            let pokemon = {
-              id: index + 1,
-              name: item.name,
-              imageUrl: item.imageUrl,
-              detailsUrl: item.url,
-            };
-            add(pokemon);
-          });
-        })
-        .catch(function (e) {
-          console.error(e);
-        })
-    );
+    return fetch(apiUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (json) {
+        json.results.forEach(function (item, index) {
+          let pokemon = {
+            id: index + 1,
+            name: item.name,
+            imageUrl: item.imageUrl,
+            detailsUrl: item.url,
+          };
+          add(pokemon);
+        });
+      })
+      .catch(function (e) {
+        console.error(e);
+      });
   }
 
   return {
